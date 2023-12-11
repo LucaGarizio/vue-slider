@@ -31,26 +31,41 @@ createApp({
                     text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
                 }
             ],
+            autoPlayInterval: null,
     }
   }, methods:{
     PrevSlide() {
+        // funzione per carosello infinito su click prev
         this.currentIndex--;
         if(this.currentIndex < 0){
         this.currentIndex = this.slides.length -1
         }
     },
-    NextSlide(){
+    NextSlide() {
+        // funzione per carosello infinito su click next
         this.currentIndex++;
         if(this.currentIndex > this.slides.length -1) {
         this.currentIndex = 0;
         }
+    },
+    // funzione per bloccare l'autoplay del carosello al passaggio del mpuse
+    stopAutoPlay(){
+        clearInterval(this.autoPlayInterval);
+    },
+    // funzione per far ininziare l'uto play quando il mouse non è in hover
+    startAutoPlay(){
+    this.autoPlayInterval = setInterval(() => {
+            this.NextSlide();
+        }, 3000);
+      },
+    //   al click su thumb image mostra la corrispondente immagine in grande
+      showImage(index){
+        this.currentIndex = index;
+      }
+    },
+    // richiama e inizializza la funzione per il carosello automatico una volta che tutta l pagina è stata caricata
+    mounted(){
+        this.startAutoPlay();
     }
-  },
-  mounted(){
-    setInterval(() => {
-        this.NextSlide();
-    },3000
-    );
-  }
-}).mount('#app')
+  }).mount('#app');
 

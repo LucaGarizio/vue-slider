@@ -28,7 +28,12 @@
                     <div @click="PrevSlide" class="prev"></div>
                     <div @click="NextSlide" class="next"></div>
 
-                    <div v-for="(photo, index) in slides" :key="index" class="thumb" :class="index === currentIndex ? 'active' : ''">
+                    <div v-for="(photo, index) in slides"
+                    @mouseover="stopAutoPlay" @mouseout="startAutoPlay"
+                    @click="showImage(index)"
+                    :key="index" class="thumb"
+                   
+                    :class="index === currentIndex ? 'active' : ''">
                         <img :src="photo.image" :alt="photo.title" />
                     </div>
                 </div>
