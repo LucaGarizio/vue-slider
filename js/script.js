@@ -52,7 +52,7 @@ createApp({
     stopAutoPlay(){
         clearInterval(this.autoPlayInterval);
     },
-    // funzione per far ininziare l'uto play quando il mouse non è in hover
+    // funzione per auto play quando il mouse non è in hover
     startAutoPlay(){
     this.autoPlayInterval = setInterval(() => {
             this.NextSlide();
